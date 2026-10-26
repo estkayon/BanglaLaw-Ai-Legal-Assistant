@@ -35,6 +35,8 @@ UI_TEXT = {
         "api_error": "Cannot connect to backend API. Make sure the API server is running.",
         "rate_limit": "Please try again in a moment. (Rate limit)",
         "toggle_lang": "বাংলা",
+        "lawyer_title": "👨‍⚖️ Need a Lawyer?",
+        "lawyer_info": "🔗 [National Legal Aid Services](http://www.nlaso.gov.bd/)\n\n🔗 [Bangladesh Bar Council](http://www.barcouncil.gov.bd/)",
     },
     "bn": {
         "page_title": "BanglaLaw — আইনি তথ্য সহকারী",
@@ -63,6 +65,8 @@ UI_TEXT = {
         "api_error": "Backend API তে সংযোগ করা যাচ্ছে না। API server চালু আছে কিনা নিশ্চিত করুন।",
         "rate_limit": "অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন। (Rate limit)",
         "toggle_lang": "English",
+        "lawyer_title": "👨‍⚖️ আইনজীবী প্রয়োজন?",
+        "lawyer_info": "🔗 [জাতীয় আইনগত সহায়তা সংস্থা](http://www.nlaso.gov.bd/)\n\n🔗 [বাংলাদেশ বার কাউন্সিল](http://www.barcouncil.gov.bd/)",
     },
 }
 
@@ -255,15 +259,21 @@ def render_chat():
                         send_feedback(question, helpful=False)
                         st.toast(t("thanks_toast"))
                 with col3:
-                    if st.button(t("save"), key=f"bm_{msg_idx}"):
-                        st.session_state.bookmarks.append(
-                            {
-                                "question": question,
-                                "answer": result["answer"],
-                                "citations": result.get("citations", []),
-                            }
-                        )
-                        st.toast(t("saved_toast"))
+                    col_save, col_share = st.columns(2)
+                    with col_save:
+                        if st.button(t("save"), key=f"bm_{msg_idx}"):
+                            st.session_state.bookmarks.append(
+                                {
+                                    "question": question,
+                                    "answer": result["answer"],
+                                    "citations": result.get("citations", []),
+                                }
+                            )
+                            st.toast(t("saved_toast"))
+                    with col_share:
+                        share_text = result.get("share_text", result["answer"][:200])
+                        wa_url = f"https://wa.me/?text={share_text}"
+                        st.markdown(f"[📱 WhatsApp]({wa_url})", unsafe_allow_html=True)
 
 
 def render_sidebar():
@@ -298,6 +308,9 @@ def render_sidebar():
         else:
             st.caption(t("no_bookmarks"))
 
+        st.markdown("---")
+        st.markdown(f"### {t('lawyer_title')}")
+        st.markdown(t("lawyer_info"))
         st.markdown("---")
         st.markdown(f'<div class="disclaimer-box">{t("disclaimer")}</div>', unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)

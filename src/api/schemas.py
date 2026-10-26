@@ -30,6 +30,8 @@ class QueryResponse(BaseModel):
     confidence: float
     is_confident: bool
     query: str
+    disclaimer: str = "⚠️ This is not legal advice. Consult a lawyer for your specific situation."
+    share_text: str = ""
 
 
 class HealthResponse(BaseModel):

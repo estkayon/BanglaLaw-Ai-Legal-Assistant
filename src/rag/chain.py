@@ -6,7 +6,6 @@ from langchain_groq import ChatGroq
 from loguru import logger
 
 from src.rag.prompt_templates import (
-    get_low_confidence_response,
     get_qa_prompt,
     get_system_prompt,
 )
@@ -24,6 +23,7 @@ class RAGResponse:
     confidence: float
     is_confident: bool
     query: str
+    share_text: str = ""
 
 
 class LegalRAGChain:
@@ -84,6 +84,14 @@ class LegalRAGChain:
         response = self.llm.invoke(messages)
         return response.content
 
+    def _build_share_text(self, answer: str, citations: list[dict], language: str) -> str:
+        """Build a shareable text snippet for WhatsApp/Facebook."""
+        short_answer = answer[:300] + "..." if len(answer) > 300 else answer
+        sources = ", ".join(c.get("source", "") for c in citations[:2])
+        if language == "bn":
+            return f"{short_answer}\n\nসূত্র: {sources}\n\n— BanglaLaw AI (banglalaw.streamlit.app)"
+        return f"{short_answer}\n\nSource: {sources}\n\n— BanglaLaw AI (banglalaw.streamlit.app)"
+
     def query(self, question: str) -> RAGResponse:
         """Run the full RAG pipeline: detect language -> retrieve -> generate."""
         language = self.detect_language(question)
@@ -96,9 +104,12 @@ class LegalRAGChain:
 
         # If not confident, return fallback
         if not is_confident:
+            from src.rag.prompt_templates import get_low_confidence_response
+
             logger.warning(f"Low confidence ({confidence}) for query: {question[:50]}")
+            fallback = get_low_confidence_response(language)
             return RAGResponse(
-                answer=get_low_confidence_response(language),
+                answer=fallback,
                 language=language,
                 citations=[],
                 confidence=confidence,
@@ -120,4 +131,5 @@ class LegalRAGChain:
             confidence=confidence,
             is_confident=True,
             query=question,
+            share_text=self._build_share_text(answer, citations, language),
         )
