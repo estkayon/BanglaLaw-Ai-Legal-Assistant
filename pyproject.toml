@@ -67,7 +67,7 @@ select = [
     "SIM",  # flake8-simplify
     "RUF",  # ruff-specific
 ]
-ignore = ["E501"]
+ignore = ["E501", "RUF001"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
