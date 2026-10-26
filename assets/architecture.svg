@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#006a4e"/>
+      <stop offset="100%" style="stop-color:#00b894"/>
+    </linearGradient>
+    <filter id="boxShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00b894" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00b894" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="600" fill="url(#bg2)" rx="12"/>
+
+  <!-- Title -->
+  <text x="500" y="40" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#e6edf3">System Architecture</text>
+
+  <!-- DATA LAYER -->
+  <text x="100" y="85" font-family="monospace" font-size="12" fill="#006a4e" font-weight="600">DATA PIPELINE</text>
+
+  <!-- Scraper Box -->
+  <rect x="30" y="100" width="160" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="110" y="128" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Web Scraper</text>
+  <text x="110" y="148" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">bdlaws.minlaw.gov.bd</text>
+  <circle cx="175" cy="112" r="4" fill="#00b894" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Arrow: Scraper -> Chunker -->
+  <line x1="190" y1="135" x2="240" y2="135" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Chunker Box -->
+  <rect x="250" y="100" width="160" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="330" y="128" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Legal Chunker</text>
+  <text x="330" y="148" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">ধারা-boundary split</text>
+
+  <!-- Arrow: Chunker -> Embedder -->
+  <line x1="410" y1="135" x2="460" y2="135" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Embedder Box -->
+  <rect x="470" y="100" width="180" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="560" y="128" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Multilingual Embedder</text>
+  <text x="560" y="148" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">MiniLM-L12-v2 (384d)</text>
+
+  <!-- Arrow: Embedder -> VectorDB -->
+  <line x1="650" y1="135" x2="700" y2="135" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- VectorDB Box -->
+  <rect x="710" y="100" width="160" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="790" y="128" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">ChromaDB</text>
+  <text x="790" y="148" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">Persistent Vector Store</text>
+  <circle cx="855" cy="112" r="4" fill="#55efc4" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- RAG LAYER -->
+  <text x="100" y="225" font-family="monospace" font-size="12" fill="#006a4e" font-weight="600">RAG PIPELINE</text>
+
+  <!-- User Query -->
+  <rect x="30" y="245" width="140" height="60" rx="8" fill="#161b22" stroke="#00b894" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="100" y="270" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">User Query</text>
+  <text x="100" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">bn / en</text>
+
+  <!-- Arrow -->
+  <line x1="170" y1="275" x2="220" y2="275" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Lang Detect -->
+  <rect x="230" y="245" width="140" height="60" rx="8" fill="#161b22" stroke="#00b894" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="300" y="270" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Language Detect</text>
+  <text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">Bangla ratio > 0.3</text>
+
+  <!-- Arrow -->
+  <line x1="370" y1="275" x2="420" y2="275" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Retriever -->
+  <rect x="430" y="245" width="140" height="60" rx="8" fill="#161b22" stroke="#00b894" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="500" y="270" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Retriever</text>
+  <text x="500" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">Top-5 cosine sim</text>
+
+  <!-- Arrow up from VectorDB to Retriever -->
+  <line x1="790" y1="170" x2="790" y2="220" stroke="#00b894" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+  <line x1="790" y1="220" x2="570" y2="255" stroke="#00b894" stroke-width="1" stroke-dasharray="4,4" opacity="0.4" marker-end="url(#arrow)"/>
+
+  <!-- Arrow -->
+  <line x1="570" y1="275" x2="620" y2="275" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- LLM -->
+  <rect x="630" y="240" width="170" height="70" rx="8" fill="#161b22" stroke="#55efc4" stroke-width="2" filter="url(#boxShadow)"/>
+  <text x="715" y="268" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#55efc4">Groq LLM</text>
+  <text x="715" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">gpt-oss-20b</text>
+  <circle cx="785" cy="252" r="5" fill="#55efc4" opacity="0.4">
+    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Arrow -->
+  <line x1="800" y1="275" x2="850" y2="275" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Response -->
+  <rect x="860" y="245" width="120" height="60" rx="8" fill="#006a4e" opacity="0.3" stroke="#00b894" stroke-width="1.5"/>
+  <text x="920" y="270" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#55efc4">Response</text>
+  <text x="920" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">+ citations</text>
+
+  <!-- API + FRONTEND LAYER -->
+  <text x="100" y="370" font-family="monospace" font-size="12" fill="#006a4e" font-weight="600">SERVING LAYER</text>
+
+  <!-- FastAPI -->
+  <rect x="130" y="390" width="180" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="220" y="418" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#e6edf3">FastAPI Backend</text>
+  <text x="220" y="440" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">/api/v1/query • /health</text>
+
+  <!-- Arrow -->
+  <line x1="310" y1="425" x2="400" y2="425" stroke="#00b894" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Streamlit -->
+  <rect x="410" y="390" width="180" height="70" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1.5" filter="url(#boxShadow)"/>
+  <text x="500" y="418" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#e6edf3">Streamlit Frontend</text>
+  <text x="500" y="440" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">Bilingual Chat UI</text>
+
+  <!-- MLOPS LAYER -->
+  <text x="100" y="510" font-family="monospace" font-size="12" fill="#006a4e" font-weight="600">MLOPS</text>
+
+  <!-- CI/CD -->
+  <rect x="30" y="525" width="150" height="55" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1" filter="url(#boxShadow)"/>
+  <text x="105" y="550" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e6edf3">GitHub Actions</text>
+  <text x="105" y="567" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">CI + Weekly Scrape</text>
+
+  <!-- DVC -->
+  <rect x="200" y="525" width="150" height="55" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1" filter="url(#boxShadow)"/>
+  <text x="275" y="550" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e6edf3">DVC</text>
+  <text x="275" y="567" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">Data Versioning</text>
+
+  <!-- Evaluation -->
+  <rect x="370" y="525" width="150" height="55" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1" filter="url(#boxShadow)"/>
+  <text x="445" y="550" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e6edf3">RAGAS Evaluation</text>
+  <text x="445" y="567" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">20 QA Pairs</text>
+
+  <!-- Monitoring -->
+  <rect x="540" y="525" width="150" height="55" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1" filter="url(#boxShadow)"/>
+  <text x="615" y="550" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e6edf3">Quality Monitor</text>
+  <text x="615" y="567" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">Drift + Response</text>
+
+  <!-- Pre-commit -->
+  <rect x="710" y="525" width="150" height="55" rx="8" fill="#161b22" stroke="#006a4e" stroke-width="1" filter="url(#boxShadow)"/>
+  <text x="785" y="550" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#e6edf3">Pre-commit</text>
+  <text x="785" y="567" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">Ruff Lint + Format</text>
+</svg>

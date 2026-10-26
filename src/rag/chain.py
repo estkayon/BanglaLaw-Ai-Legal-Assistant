@@ -34,7 +34,7 @@ class LegalRAGChain:
     def __init__(
         self,
         retriever: LegalRetriever,
-        model_name: str = "llama-3.1-70b-versatile",
+        model_name: str = "openai/gpt-oss-20b",
         temperature: float = 0.1,
     ):
         self.retriever = retriever

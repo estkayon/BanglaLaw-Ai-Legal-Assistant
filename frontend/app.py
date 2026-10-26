@@ -125,6 +125,8 @@ def init_session_state():
         st.session_state.bookmarks = []
     if "ui_lang" not in st.session_state:
         st.session_state.ui_lang = "en"
+    if "pending_query" not in st.session_state:
+        st.session_state.pending_query = None
 
 
 # --- API calls ---
@@ -136,7 +138,7 @@ def query_api(question: str) -> dict | None:
         response = httpx.post(
             f"{API_BASE_URL}/query",
             json={"question": question},
-            timeout=30.0,
+            timeout=60.0,
         )
         response.raise_for_status()
         return response.json()
@@ -208,13 +210,72 @@ def render_citations(citations: list[dict]):
 
 def render_chat():
     """Main chat interface."""
+    # Handle pending sidebar query
+    if "pending_query" in st.session_state and st.session_state.pending_query:
+        question = st.session_state.pending_query
+        st.session_state.pending_query = None
+
+        with st.chat_message("assistant"):
+            with st.spinner(t("searching")):
+                result = query_api(question)
+
+            if result:
+                resp_lang = result.get("language", "en")
+                render_answer(result["answer"], resp_lang)
+                render_citations(result.get("citations", []))
+
+                if not result["is_confident"]:
+                    st.warning(t("low_confidence"))
+
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": result["answer"],
+                        "language": resp_lang,
+                        "citations": result.get("citations", []),
+                        "confidence": result.get("confidence", 0),
+                        "query": question,
+                    }
+                )
+
     # Display chat history
-    for msg in st.session_state.messages:
+    for idx, msg in enumerate(st.session_state.messages):
         with st.chat_message(msg["role"]):
             if msg["role"] == "assistant":
                 render_answer(msg["content"], msg.get("language", "en"))
                 if "citations" in msg:
                     render_citations(msg["citations"])
+
+                if msg.get("citations"):
+                    col1, col2, col3, col4 = st.columns([1, 1, 2, 2])
+                    with col1:
+                        if st.button("👍", key=f"hist_up_{idx}"):
+                            send_feedback(msg.get("query", ""), helpful=True)
+                            st.toast(t("thanks_toast"))
+                    with col2:
+                        if st.button("👎", key=f"hist_down_{idx}"):
+                            send_feedback(msg.get("query", ""), helpful=False)
+                            st.toast(t("thanks_toast"))
+                    with col3:
+                        if st.button(t("save"), key=f"hist_bm_{idx}"):
+                            st.session_state.bookmarks.append(
+                                {
+                                    "question": msg.get("query", ""),
+                                    "answer": msg["content"],
+                                    "citations": msg.get("citations", []),
+                                }
+                            )
+                            st.toast(t("saved_toast"))
+                    with col4:
+                        if st.button("📱 WhatsApp", key=f"hist_wa_{idx}"):
+                            import urllib.parse
+
+                            share_text = msg["content"][:200]
+                            wa_url = f"https://wa.me/?text={urllib.parse.quote(share_text)}"
+                            st.markdown(
+                                f'<meta http-equiv="refresh" content="0;url={wa_url}">',
+                                unsafe_allow_html=True,
+                            )
             else:
                 st.markdown(msg["content"])
 
@@ -247,34 +308,6 @@ def render_chat():
                     }
                 )
 
-                # Feedback and bookmark
-                col1, col2, col3 = st.columns([1, 1, 4])
-                msg_idx = len(st.session_state.messages)
-                with col1:
-                    if st.button("👍", key=f"up_{msg_idx}"):
-                        send_feedback(question, helpful=True)
-                        st.toast(t("thanks_toast"))
-                with col2:
-                    if st.button("👎", key=f"down_{msg_idx}"):
-                        send_feedback(question, helpful=False)
-                        st.toast(t("thanks_toast"))
-                with col3:
-                    col_save, col_share = st.columns(2)
-                    with col_save:
-                        if st.button(t("save"), key=f"bm_{msg_idx}"):
-                            st.session_state.bookmarks.append(
-                                {
-                                    "question": question,
-                                    "answer": result["answer"],
-                                    "citations": result.get("citations", []),
-                                }
-                            )
-                            st.toast(t("saved_toast"))
-                    with col_share:
-                        share_text = result.get("share_text", result["answer"][:200])
-                        wa_url = f"https://wa.me/?text={share_text}"
-                        st.markdown(f"[📱 WhatsApp]({wa_url})", unsafe_allow_html=True)
-
 
 def render_sidebar():
     with st.sidebar:
@@ -297,6 +330,7 @@ def render_sidebar():
                 category_name = label.split(" ", 1)[1]
                 query = f"{t('cat_query_suffix')} {category_name}"
                 st.session_state.messages.append({"role": "user", "content": query})
+                st.session_state.pending_query = query
                 st.rerun()
 
         st.markdown("---")

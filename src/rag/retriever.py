@@ -35,7 +35,7 @@ class LegalRetriever:
     """Retrieves relevant legal text chunks from the vector store."""
 
     DEFAULT_TOP_K = 5
-    CONFIDENCE_THRESHOLD = 0.45
+    CONFIDENCE_THRESHOLD = 0.25
 
     def __init__(
         self,
