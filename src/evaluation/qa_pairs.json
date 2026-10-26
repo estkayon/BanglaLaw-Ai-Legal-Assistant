@@ -1,0 +1,182 @@
+[
+  {
+    "id": "qa_001",
+    "question": "ভাড়াটিয়া উচ্ছেদের জন্য কত দিনের নোটিশ দিতে হয়?",
+    "expected_answer": "প্রাঙ্গণ ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১ অনুযায়ী ভাড়াটিয়াকে উচ্ছেদের জন্য ১২ মাসের লিখিত নোটিশ প্রদান করতে হয়।",
+    "expected_act": "প্রাঙ্গণ ভাড়া নিয়ন্ত্রণ আইন, ১৯৯১",
+    "expected_section": "১২",
+    "language": "bn",
+    "category": "tenant"
+  },
+  {
+    "id": "qa_002",
+    "question": "What is the punishment for theft in Bangladesh?",
+    "expected_answer": "According to the Penal Code 1860, Section 379, the punishment for theft is imprisonment up to 3 years, or fine, or both.",
+    "expected_act": "The Penal Code, 1860",
+    "expected_section": "379",
+    "language": "en",
+    "category": "criminal"
+  },
+  {
+    "id": "qa_003",
+    "question": "মুসলিম পারিবারিক আইনে তালাকের নিয়ম কি?",
+    "expected_answer": "মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ অনুযায়ী তালাক দিতে হলে লিখিতভাবে চেয়ারম্যানকে নোটিশ দিতে হবে এবং ৯০ দিন পর তালাক কার্যকর হবে।",
+    "expected_act": "মুসলিম পারিবারিক আইন অধ্যাদেশ, ১৯৬১",
+    "expected_section": "৭",
+    "language": "bn",
+    "category": "family"
+  },
+  {
+    "id": "qa_004",
+    "question": "How much is the minimum wage for garment workers?",
+    "expected_answer": "The minimum wage is set by the Minimum Wages Board under the Labour Act, 2006.",
+    "expected_act": "The Bangladesh Labour Act, 2006",
+    "expected_section": "139",
+    "language": "en",
+    "category": "labor"
+  },
+  {
+    "id": "qa_005",
+    "question": "জমি রেজিস্ট্রেশনের জন্য কি কি দলিল লাগে?",
+    "expected_answer": "রেজিস্ট্রেশন আইন ১৯০৮ অনুযায়ী জমি হস্তান্তরের দলিল রেজিস্ট্রি করতে হয়।",
+    "expected_act": "The Registration Act, 1908",
+    "expected_section": "17",
+    "language": "bn",
+    "category": "land"
+  },
+  {
+    "id": "qa_006",
+    "question": "What are the rights of a consumer under Bangladeshi law?",
+    "expected_answer": "The Consumer Rights Protection Act 2009 provides rights including the right to safety, right to be informed, right to choose, and right to be heard.",
+    "expected_act": "ভোক্তা অধিকার সংরক্ষণ আইন, ২০০৯",
+    "expected_section": "3",
+    "language": "en",
+    "category": "consumer"
+  },
+  {
+    "id": "qa_007",
+    "question": "ডাউরি বা যৌতুক নেওয়া কি অপরাধ?",
+    "expected_answer": "যৌতুক নিরোধ আইন ২০১৮ অনুযায়ী যৌতুক দেওয়া বা নেওয়া শাস্তিযোগ্য অপরাধ।",
+    "expected_act": "যৌতুক নিরোধ আইন, ২০১৮",
+    "expected_section": "3",
+    "language": "bn",
+    "category": "family"
+  },
+  {
+    "id": "qa_008",
+    "question": "What is the law regarding cheque bounce in Bangladesh?",
+    "expected_answer": "Under the Negotiable Instruments Act 1881, Section 138, dishonour of cheque is a punishable offence.",
+    "expected_act": "The Negotiable Instruments Act, 1881",
+    "expected_section": "138",
+    "language": "en",
+    "category": "criminal"
+  },
+  {
+    "id": "qa_009",
+    "question": "শিশু শ্রম কি বাংলাদেশে নিষিদ্ধ?",
+    "expected_answer": "শ্রম আইন ২০০৬ অনুযায়ী ১৪ বছরের নিচে শিশুদের কাজে নিয়োগ নিষিদ্ধ।",
+    "expected_act": "বাংলাদেশ শ্রম আইন, ২০০৬",
+    "expected_section": "34",
+    "language": "bn",
+    "category": "labor"
+  },
+  {
+    "id": "qa_010",
+    "question": "How can I file a case for domestic violence?",
+    "expected_answer": "Under the Domestic Violence (Prevention and Protection) Act 2010, a victim can file a complaint with the nearest magistrate court.",
+    "expected_act": "পারিবারিক সহিংসতা (প্রতিরোধ ও সুরক্ষা) আইন, ২০১০",
+    "expected_section": "4",
+    "language": "en",
+    "category": "family"
+  },
+  {
+    "id": "qa_011",
+    "question": "মোবাইল ব্যাংকিং জালিয়াতির শাস্তি কি?",
+    "expected_answer": "তথ্য ও যোগাযোগ প্রযুক্তি আইন ২০০৬ এবং ডিজিটাল নিরাপত্তা আইন ২০১৮ অনুযায়ী ইলেকট্রনিক জালিয়াতি শাস্তিযোগ্য অপরাধ।",
+    "expected_act": "ডিজিটাল নিরাপত্তা আইন, ২০১৮",
+    "expected_section": "35",
+    "language": "bn",
+    "category": "criminal"
+  },
+  {
+    "id": "qa_012",
+    "question": "What are the grounds for divorce in Bangladesh for non-Muslims?",
+    "expected_answer": "Under the Dissolution of Muslim Marriages Act and the Family Courts Ordinance, grounds include cruelty, desertion, and failure to maintain.",
+    "expected_act": "The Family Courts Ordinance, 1985",
+    "expected_section": "5",
+    "language": "en",
+    "category": "family"
+  },
+  {
+    "id": "qa_013",
+    "question": "ভূমি উন্নয়ন কর কিভাবে নির্ধারিত হয়?",
+    "expected_answer": "ভূমি উন্নয়ন কর আদায় আইন অনুযায়ী জমির শ্রেণি ও পরিমাণ অনুসারে কর নির্ধারিত হয়।",
+    "expected_act": "ভূমি উন্নয়ন কর অধ্যাদেশ, ১৯৭৬",
+    "expected_section": "3",
+    "language": "bn",
+    "category": "land"
+  },
+  {
+    "id": "qa_014",
+    "question": "Is bail available for all offences in Bangladesh?",
+    "expected_answer": "Under the Code of Criminal Procedure 1898, bail is available for bailable offences as a right. For non-bailable offences, bail is at the discretion of the court.",
+    "expected_act": "The Code of Criminal Procedure, 1898",
+    "expected_section": "497",
+    "language": "en",
+    "category": "criminal"
+  },
+  {
+    "id": "qa_015",
+    "question": "সম্পত্তির উত্তরাধিকার আইন কি?",
+    "expected_answer": "মুসলিম উত্তরাধিকার আইন অনুযায়ী সম্পত্তি বণ্টন হয়। উত্তরাধিকার আইন ১৯২৫ অমুসলিমদের ক্ষেত্রে প্রযোজ্য।",
+    "expected_act": "The Succession Act, 1925",
+    "expected_section": "1",
+    "language": "bn",
+    "category": "family"
+  },
+  {
+    "id": "qa_016",
+    "question": "What is the VAT rate in Bangladesh?",
+    "expected_answer": "Under the Value Added Tax and Supplementary Duty Act 2012, the standard VAT rate is 15%.",
+    "expected_act": "মূল্য সংযোজন কর ও সম্পূরক শুল্ক আইন, ২০১২",
+    "expected_section": "15",
+    "language": "en",
+    "category": "consumer"
+  },
+  {
+    "id": "qa_017",
+    "question": "পরিবেশ দূষণের শাস্তি কি?",
+    "expected_answer": "পরিবেশ সংরক্ষণ আইন ১৯৯৫ অনুযায়ী পরিবেশ দূষণকারীর বিরুদ্ধে জরিমানা এবং কারাদণ্ডের বিধান রয়েছে।",
+    "expected_act": "বাংলাদেশ পরিবেশ সংরক্ষণ আইন, ১৯৯৫",
+    "expected_section": "15",
+    "language": "bn",
+    "category": "criminal"
+  },
+  {
+    "id": "qa_018",
+    "question": "Can a woman claim maintenance from her husband?",
+    "expected_answer": "Under the Family Courts Ordinance 1985 and Muslim Family Laws Ordinance 1961, a wife has the right to claim maintenance from her husband.",
+    "expected_act": "The Family Courts Ordinance, 1985",
+    "expected_section": "5",
+    "language": "en",
+    "category": "family"
+  },
+  {
+    "id": "qa_019",
+    "question": "কোম্পানি রেজিস্ট্রেশন কিভাবে করতে হয়?",
+    "expected_answer": "কোম্পানি আইন ১৯৯৪ অনুযায়ী রেজিস্ট্রার অব জয়েন্ট স্টক কোম্পানিজ এন্ড ফার্মস এ আবেদন করতে হয়।",
+    "expected_act": "কোম্পানি আইন, ১৯৯৪",
+    "expected_section": "6",
+    "language": "bn",
+    "category": "consumer"
+  },
+  {
+    "id": "qa_020",
+    "question": "What is the maximum working hours per week in Bangladesh?",
+    "expected_answer": "Under the Bangladesh Labour Act 2006, the maximum working hours are 48 hours per week.",
+    "expected_act": "The Bangladesh Labour Act, 2006",
+    "expected_section": "100",
+    "language": "en",
+    "category": "labor"
+  }
+]
